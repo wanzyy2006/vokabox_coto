@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +12,12 @@
 body {
     background: #fff8f0;
     color: #333;
+}
+
+body {
+    background: #fff8f0;
+    background-image: radial-gradient(rgba(139,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
 /* HEADER */
@@ -247,4 +257,208 @@ header {
 
 .contact {
     background: linear-gradient(45deg, #8B0000, #B22222);
+}
+
+/* BUY BUTTON IN CARD */
+.buy-btn {
+    width: 85%;
+    margin: 15px auto 20px;
+    display: block;
+    padding: 10px;
+    background: linear-gradient(45deg, gold, orange);
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(255,165,0,0.5);
+}
+
+/* BUY MODAL */
+.buy-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.buy-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.wa-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    width: 200px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.wa-btn.web {
+    background: #128C7E;
+}
+
+.wa-btn:hover {
+    transform: scale(1.05);
+}
+
+/* CLOSE BUTTON MODERN */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #8B0000;
+    color: white;
+    border: none;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    background: gold;
+    color: black;
+    transform: rotate(90deg);
+}
+
+/* Biar posisi modal relative */
+.popup-content,
+.buy-modal-content {
+    position: relative;
+}
+
+/* ================= MODAL UPGRADE ================= */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Blur background saat modal aktif */
+.popup,
+.buy-modal,
+.image-modal {
+    backdrop-filter: blur(6px);
+}
+
+/* Animasi modal masuk */
+.popup-content,
+.buy-modal-content {
+    transform: translateY(-30px);
+    opacity: 0;
+    animation: modalSlide 0.35s ease forwards;
+}
+
+@keyframes modalSlide {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Upgrade tombol close */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: linear-gradient(45deg, #8B0000, #B22222);
+    color: white;
+    border: none;
+    font-size: 18px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    background: linear-gradient(45deg, gold, orange);
+    color: black;
+    transform: rotate(180deg) scale(1.1);
+}
+
+.testimoni {
+    text-align: center;
+    padding: 60px 20px;
+    background: #fff;
+}
+
+.testi-box {
+    background: #fff8e1;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.floating-wa {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    color: white;
+    font-size: 28px;
+    padding: 15px 18px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    z-index: 999;
+}
+
+.floating-wa:hover {
+    transform: scale(1.1);
+}
+
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #8B0000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    z-index: 2000;
+}
+
+body.loaded #loader {
+    display: none;
+}
+
+.faq {
+    padding: 60px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.faq-item {
+    margin: 20px auto;
+    max-width: 600px;
+    background: #fff8e1;
+    padding: 20px;
+    border-radius: 10px;
 }
