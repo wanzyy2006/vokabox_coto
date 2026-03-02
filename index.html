@@ -30,30 +30,34 @@
         <img src="https://files.catbox.moe/b0re5e.jpg" onclick="openImageModal(this.src)" alt="">
         <h3>Paket 1</h3>
         <p>Daging, Paru</p>
+        <button class="buy-btn" onclick="openBuyModal('Paket 1')">Beli Paket 1</button>
     </div>
 
     <div class="card">
         <img src="https://files.catbox.moe/8858ne.jpg" onclick="openImageModal(this.src)" alt="">
         <h3>Paket 2</h3>
         <p>Hati Paru</p>
+        <button class="buy-btn" onclick="openBuyModal('Paket 2')">Beli Paket 2</button>
     </div>
 
     <div class="card">
         <img src="https://files.catbox.moe/04pkad.jpg" onclick="openImageModal(this.src)" alt="">
         <h3>Paket 3</h3>
         <p>Daging Hati Paru</p>
+        <button class="buy-btn" onclick="openBuyModal('Paket 3')">Beli Paket 3</button>
     </div>
 
     <div class="card">
         <img src="https://files.catbox.moe/ayp17d.jpg" onclick="openImageModal(this.src)" alt="">
         <h3>Paket 4</h3>
         <p>Daging Dan Jeroan Khas</p>
+        <button class="buy-btn" onclick="openBuyModal('Paket 4')">Beli Paket 4</button>
     </div>
 
 </section>
 
 <div class="buy-section">
-    <button onclick="openPopup()">Beli Sekarang</button>
+    <button onclick="openPopup()">Bertanya?</button>
 </div>
 
 <section id="contact" class="contact">
@@ -63,12 +67,12 @@
 </section>
 
 <!-- Popup -->
-<div class="popup" id="popup">
+<div class="popup" id="popup" onclick="outsideClose(event, 'popup')">
     <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h3>Pesan Sekarang</h3>
-        <p>Hubungi WhatsApp kami untuk pemesanan cepat!</p>
-        <a href="https://wa.me/6285213951035" target="_blank">Chat WhatsApp</a>
+        <button class="close-btn" onclick="closePopup()">✕</button>
+        <h3>Ingin Bertanya Apa</h3>
+        <p>Hubungi Instagaram kami untuk bertanya sesuatu!</p>
+        <a href="https://www.instagram.com/vokabox_coto?igsh=MWw3aXVydG5wd3p6OQ==" target="_blank">Chat Intagram</a>
     </div>
 </div>
 
@@ -78,25 +82,124 @@
     <img class="image-modal-content" id="zoomedImage">
 </div>
 
+<!-- Buy Modal -->
+<div class="buy-modal" id="buyModal" onclick="outsideClose(event, 'buyModal')">
+    <div class="buy-modal-content">
+        <button class="close-btn" onclick="closeBuyModal()">✕</button>
+        <h3 id="selectedPackage"></h3>
+        <p>Pilih metode chat:</p>
+
+        <a id="waApp" target="_blank" class="wa-btn">Chat WhatsApp</a>
+        <a id="waWeb" target="_blank" class="wa-btn web">Instagram</a>
+    </div>
+</div>
+
+<div id="loader">
+    <h2>Vokabox Coto</h2>
+</div>
+
+<section class="testimoni">
+    <h2>Apa Kata Pelanggan Kami</h2>
+    <div class="testi-box">
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>"Dagingnya fresh banget, bersih dan cepat sampai!"</p>
+        <span>- Andi, Makassar</span>
+    </div>
+
+    <div class="testi-box">
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>"Packing rapi dan kualitas premium."</p>
+        <span>- Rahma, Gowa</span>
+    </div>
+</section>
+
+<section class="faq">
+    <h2>Pertanyaan Umum</h2>
+
+    <div class="faq-item">
+        <h4>Apakah Bisa COD?</h4>
+        <p>Ya, kami menerima COD untuk area Makassar dan sekitarnya.</p>
+    </div>
+
+    <div class="faq-item">
+        <h4>Bisa kirim luar kota?</h4>
+        <p>Untuk Saat Ini Belum Menerima Pengiriman Luar Kota.</p>
+    </div>
+
+    <div class="faq-item">
+        <h4>Tahan berapa lama?</h4>
+        <p>Produk tahan 1-2 hari suhu ruang, lebih lama jika disimpan di kulkas.</p>
+    </div>
+</section>
+
 <script>
 function openPopup() {
     document.getElementById("popup").style.display = "flex";
+    document.body.classList.add("modal-open");
 }
+
 function closePopup() {
     document.getElementById("popup").style.display = "none";
+    document.body.classList.remove("modal-open");
 }
+
+function openBuyModal(packageName) {
+    document.getElementById("buyModal").style.display = "flex";
+    document.body.classList.add("modal-open");
+
+    document.getElementById("selectedPackage").innerText = "Pesan " + packageName;
+
+    let message = encodeURIComponent("Halo, saya ingin memesan " + packageName);
+    let number = "6285213951035";
+
+    document.getElementById("waApp").href =
+        "https://wa.me/" + number + "?text=" + message;
+
+    document.getElementById("waWeb").href =
+        "https://www.instagram.com/vokabox_coto?igsh=MWw3aXVydG5wd3p6OQ==" + number + "&text=" + message;
+}
+
+function closeBuyModal() {
+    document.getElementById("buyModal").style.display = "none";
+    document.body.classList.remove("modal-open");
+}
+
+function closeImageModal() {
+    document.getElementById("imageModal").style.display = "none";
+    document.body.classList.remove("modal-open");
+}
+
+function openImageModal(src) {
+    document.getElementById("imageModal").style.display = "flex";
+    document.getElementById("zoomedImage").src = src;
+    document.body.classList.add("modal-open");
+}
+
+/* Klik area luar untuk close */
+function outsideClose(event, id) {
+    if (event.target.id === id) {
+        document.getElementById(id).style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
+}
+
+/* ESC untuk close semua modal */
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closePopup();
+        closeBuyModal();
+        closeImageModal();
+    }
+});
 </script>
 
 <script>
-    function openImageModal(src) {
-        document.getElementById("imageModal").style.display = "flex";
-        document.getElementById("zoomedImage").src = src;
-    }
-    
-    function closeImageModal() {
-        document.getElementById("imageModal").style.display = "none";
-    }
-    </script>
+window.addEventListener("load", function(){
+    document.body.classList.add("loaded");
+});
+</script>
+
+<a href="https://wa.me/6285213951035" class="floating-wa" target="_blank">💬</a>
 
 </body>
 </html>
